@@ -1,0 +1,14 @@
+1) Tulosta kaikki opiskelijat, joilla on tietokannassa hylätty arvosana
+SELECT * FROM opiskelija o JOIN arviointi a ON a.idopiskelija=o.idopiskelija WHERE Arvosana=0;
+
+2) Tulosta kaikki Fysiikan perusteet -kurssin hyväksytysti suorittaneet
+SELECT * FROM opiskelija o JOIN arviointi a ON a.idOpiskelija=o.idOpiskelija JOIN opintojakso op ON op.idOpintojakso=a.idOpintojakso WHERE Arvosana>0 AND Nimi='Fysiikan perusteet';
+
+3) Mille kursseille Jukka on osallistunut ?
+SELECT Nimi From Opiskelija o JOIN Arviointi a ON a.idOpiskelija=o.idOpiskelija JOIN Opintojakso op ON op.idOpintojakso=a.idOpintojakso WHERE Etunimi='Jukka';
+
+4) Mikä on Jeren opintosuoritusten keskiarvo ?
+SELECT AVG(Arvosana) FROM Arviointi a JOIN Opiskelija o ON o.idOpiskelija=a.idOpiskelija WHERE Etunimi='Jere';
+
+5) Millä opintojaksoilla ei ole yhtään suoritusmerkintää ? (Vihje: Tarvitset tässä left tai right joinia...)
+SELECT Nimi FROM opintojakso op LEFT JOIN Arviointi a ON op.idOpintojakso=a.idOpintojakso WHERE Arvosana IS NULL;
